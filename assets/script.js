@@ -1,72 +1,17 @@
 
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-console.log("hello")
-console.log(generateBtn)
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
-
-// Write password to the #password input
-function writePassword() {
-  console.debug("testing write password")
-  var password = generatePassword();
-  var passwordTextEl = document.querySelector("#password");
-
-  passwordTextEl.value = password;
-
-}
-
-function generatePassword() {
-
-  const params = getParameters();
-  if (!params) return "";
-
-  const nums = "0123456789";
-  const lowerCase = "abcdefghijklmnopqrstuvxyz";
-  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-  const specialChars = "!@#$%^&*()";
-  let setOfChars = "";
-  let password = "";
-
-  if (params.hasLowerCaseChar) setOfChars += lowerCase;
-  if (params.hasUpperCaseChar) setOfChars += upperCase;
-  if (params.hasNumericChar) setOfChars += nums;
-  if (params.hasSpecialChar) setOfChars += specialChars;
-
-  for (let i = 0; i < params.length; i++) {
-    
-    // generate random number between 0 and length of setOfChars
-    const randomIndex = Math.floor(Math.random()*setOfChars.length);    
-    password += setOfChars[randomIndex]
-  }
+// TODO: make the Generate Password button prompt the user, via pop ups, to make the following selections:
+//  length of characters betwen 8 - 129
+//  whether to include:
+//  uppercase, lowercase, numeric, and/or special characters
+sign = prompt("Choose a password length between 8 - 128 characters.");
+  if (sign.type == number){ }
 
 
 
-
-  return password
-}
-
-
-function getParameters() {
+// input needs to be validated
+// at least ONE type of character type to be selec†ed
 
 
-  const inputString = prompt("Enter the length of the password");
-  const length = parseInt(inputString);
-  if (Number.isNaN(length) || length < 8 || length > 128) {
-    alert("Length should be a number between 7 and 129.");
-    return null;
-  }
-  // add characters to availableCharacters via user input
-  const hasSpecialChar = confirm("Do you want special characters?")
-  const hasNumericChar = confirm("Do you want numeric characters?")
-  const hasUpperCaseChar = confirm("Do you want uppercase characters?")
-  const hasLowerCaseChar = confirm("Do you want lowercase characters?")
 
-  if (!hasSpecialChar && !hasNumericChar && !hasUpperCaseChar && !hasLowerCaseChar) {
-    alert("Password needs at least one option selected");
-    return null;
-  }
-  return { length, hasSpecialChar, hasNumericChar, hasUpperCaseChar, hasLowerCaseChar };
-
-}
+// when ALL prompts are answered, a password generates in the box that matches the selected criteria
